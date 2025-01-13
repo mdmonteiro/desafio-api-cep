@@ -33,4 +33,28 @@ public class GlobalExceptionHandler {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorLog);
 	}
 
+	@ExceptionHandler(InvalidCepFormatException.class)
+	public ResponseEntity<ErrorLog> handleInvalidCepFormatException(InvalidCepFormatException ex, WebRequest request) {
+		ErrorLog errorLog = new ErrorLog();
+		errorLog.setEndpoint(request.getDescription(false));
+		errorLog.setErrorMessage(ex.getMessage());
+		errorLog.setTimestamp(LocalDateTime.now());
+
+		errorLogRepository.save(errorLog);
+
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorLog);
+	}
+
+	@ExceptionHandler(ExternalApiException.class)
+	public ResponseEntity<ErrorLog> handleExternalApiException(ExternalApiException ex, WebRequest request) {
+		ErrorLog errorLog = new ErrorLog();
+		errorLog.setEndpoint(request.getDescription(false));
+		errorLog.setErrorMessage(ex.getMessage());
+		errorLog.setTimestamp(LocalDateTime.now());
+
+		errorLogRepository.save(errorLog);
+
+		return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(errorLog);
+	}
+
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.desafioapicep.cepservice.client.CepClient;
 import com.desafioapicep.cepservice.dto.CepResponse;
 import com.desafioapicep.cepservice.entity.HistoricoConsulta;
+import com.desafioapicep.cepservice.exception.InvalidCepFormatException;
 import com.desafioapicep.cepservice.repository.HistoricoConsultaLogRepository;
 
 @Service
@@ -20,6 +21,7 @@ public class CepService {
 	}
 
 	public CepResponse buscarCep(String cep) {
+		validarCep(cep);
 		CepResponse cepResponse = cepClient.buscarCep(cep);
 		salvarLog(cepResponse);
 		return cepResponse;
@@ -38,6 +40,12 @@ public class CepService {
 
 		historicoConsultaLogRepository.save(log);
 
+	}
+
+	private void validarCep(String cep) {
+		if (!cep.matches("\\d{8}")) {
+			throw new InvalidCepFormatException("Formato de CEP inválido. Deve conter exatamente 8 números.");
+		}
 	}
 
 }
