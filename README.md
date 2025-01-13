@@ -57,8 +57,13 @@ Para executar este projeto, certifique-se de ter os seguintes itens instalados:
    A aplicação estará disponível em:
 
    "
-   http://localhost:8080
-   "   
+   http://localhost:8080/cep/{cep}
+   "
+4. **Massa de Teste**:
+
+   O Mockoon possui um CEP cadastrado:
+
+   ![image](https://github.com/user-attachments/assets/190d00d6-a135-4df0-92ed-00d5b5126c46)
 
 
 ## Comandos Adicionais
@@ -74,7 +79,7 @@ Para executar este projeto, certifique-se de ter os seguintes itens instalados:
   "bash
   docker-compose down --volumes --remove-orphans
   "
-
+  
 ## Observações
 
 - Certifique-se de que as portas definidas no `docker-compose.yml` estão disponíveis no host.
