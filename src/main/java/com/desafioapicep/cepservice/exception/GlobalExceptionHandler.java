@@ -14,25 +14,23 @@ import com.desafioapicep.cepservice.repository.ErrorLogRepository;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    private final ErrorLogRepository errorLogRepository;
-    
-    public GlobalExceptionHandler(ErrorLogRepository errorLogRepository) {
-        this.errorLogRepository = errorLogRepository;
-    }
-    
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<String> handleGenericException(Exception ex, WebRequest request) {
-        
-        ErrorLog errorLog = new ErrorLog();
-        errorLog.setEndpoint(request.getDescription(false));
-        errorLog.setErrorMessage(ex.getMessage());
-        errorLog.setTimestamp(LocalDateTime.now());
-        errorLogRepository.save(errorLog);
+	private final ErrorLogRepository errorLogRepository;
 
-       
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body("Cep não encontrado.");
-    }
-    
+	public GlobalExceptionHandler(ErrorLogRepository errorLogRepository) {
+		this.errorLogRepository = errorLogRepository;
+	}
+
+	@ExceptionHandler(RuntimeException.class)
+	public ResponseEntity<ErrorLog> handleGenericException(Exception ex, WebRequest request) {
+
+		ErrorLog errorLog = new ErrorLog();
+		errorLog.setEndpoint(request.getDescription(false));
+		errorLog.setErrorMessage(ex.getMessage());
+		errorLog.setTimestamp(LocalDateTime.now());
+
+		errorLogRepository.save(errorLog);
+
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorLog);
+	}
+
 }
-

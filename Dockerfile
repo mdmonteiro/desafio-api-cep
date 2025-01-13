@@ -1,4 +1,4 @@
-# Etapa 1: Construir a aplicação
+# Construir a aplicação
 FROM maven:3.8.3-openjdk-17 AS builder
 
 # Define o diretório de trabalho dentro do container
@@ -11,7 +11,7 @@ COPY src ./src
 # Instala as dependências e compila a aplicação
 RUN mvn clean package -DskipTests
 
-# Etapa 2: Executar a aplicação
+# Executar a aplicação
 FROM openjdk:17-jdk-slim
 
 # Define o diretório de trabalho para o runtime
