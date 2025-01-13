@@ -17,9 +17,9 @@ Para executar este projeto, certifique-se de ter os seguintes itens instalados:
 
 1. Clone este repositório:
 
-   ```bash
+   "bash
    git clone git@github.com:mdmonteiro/desafio-api-cep.git   
-   ```
+   "
 
 2. Certifique-se de que as configurações no `application.properties` estão corretas. O arquivo deve conter as configurações necessárias para conexão com o banco de dados e outros recursos.
 
@@ -35,17 +35,17 @@ Para executar este projeto, certifique-se de ter os seguintes itens instalados:
 
 1. **Construa a aplicação Java com Maven**:
 
-   ```bash
+   "bash
    mvn clean install
-   ```
+   "
 
    Isso gerará o arquivo `.jar` na pasta `target`.
 
 2. **Inicie os contêineres com Docker Compose**:
 
-   ```bash
+   "bash
    docker-compose up --build
-   ```
+   "
 
    Este comando irá:
 
@@ -56,26 +56,24 @@ Para executar este projeto, certifique-se de ter os seguintes itens instalados:
 
    A aplicação estará disponível em:
 
-   ```
-   http://localhost:<PORTA>
-   ```
-
-   Substitua `<PORTA>` pela porta configurada no `application.properties` ou no `docker-compose.yml`.
+   "
+   http://localhost:8080
+   "   
 
 
 ## Comandos Adicionais
 
 - **Parar todos os contêineres**:
 
-  ```bash
+  "bash
   docker-compose down
-  ```
+  "
 
 - **Limpar volumes e redes**:
 
-  ```bash
+  "bash
   docker-compose down --volumes --remove-orphans
-  ```
+  "
 
 ## Observações
 
