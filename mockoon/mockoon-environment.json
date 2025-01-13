@@ -1,26 +1,26 @@
 {
-    "uuid": "063ff8c1-90ea-4baa-b288-e2de9684b79a",
+    "uuid": "64588a97-f67a-41e9-95c9-fcda088b0ccb",
     "lastMigration": 33,
-    "name": "ApiCepMockada",
+    "name": "Cep Santander Mock",
     "endpointPrefix": "",
     "latency": 0,
-    "port": 3000,
+    "port": 3001,
     "hostname": "0.0.0.0",
     "folders": [],
     "routes": [
         {
-            "uuid": "6ec66b4f-0a77-4cee-8f42-1520ab6c6396",
+            "uuid": "4ee151a0-8362-4fba-8c5e-f2b23bbfea6c",
             "type": "http",
-            "documentation": "Consulta Cep",
+            "documentation": "",
             "method": "get",
             "endpoint": "cep/:cep",
             "responses": [
                 {
-                    "uuid": "53f0082f-45f0-4984-ac38-83467b549627",
-                    "body": "{\r\n  \"cep\": \"04661200\",\r\n  \"tipoLogradouro\": \"Av.\",\r\n  \"logradouro\": \"Interlagos\",\r\n  \"bairro\": \"Vila Arriete\",\r\n  \"cidade\": \"São Paulo\",\r\n  \"estado\": \"SP\"\r\n}",
+                    "uuid": "e6c8a6eb-36d0-4f49-b255-ed52603c96f3",
+                    "body": "{\n  \"cep\": \"04661200\",\n  \"tipoLogradouro\": \"Av.\",\n  \"logradouro\": \"Interlagos\",\n  \"bairro\": \"Vila Arriete\",\n  \"cidade\": \"São Paulo\",\n  \"estado\": \"SP\"\n}",
                     "latency": 0,
                     "statusCode": 200,
-                    "label": "Cep Encontrado",
+                    "label": "Cep encontrado",
                     "headers": [],
                     "bodyType": "INLINE",
                     "filePath": "",
@@ -43,8 +43,8 @@
                     "callbacks": []
                 },
                 {
-                    "uuid": "17e0875a-af6a-4b1e-b5bf-b457be000fdd",
-                    "body": "{\n  \"error\": \"Cep não encontrado\"\n}",
+                    "uuid": "5cdd3422-9ed5-4d88-9cf2-a95785956bcd",
+                    "body": "{\n  \"error\": \"cep não encontrado\"\n  \n}",
                     "latency": 0,
                     "statusCode": 400,
                     "label": "Cep não encontrado",
@@ -78,7 +78,7 @@
     "rootChildren": [
         {
             "type": "route",
-            "uuid": "6ec66b4f-0a77-4cee-8f42-1520ab6c6396"
+            "uuid": "4ee151a0-8362-4fba-8c5e-f2b23bbfea6c"
         }
     ],
     "proxyMode": false,

@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
         this.errorLogRepository = errorLogRepository;
     }
     
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<String> handleGenericException(Exception ex, WebRequest request) {
         
         ErrorLog errorLog = new ErrorLog();

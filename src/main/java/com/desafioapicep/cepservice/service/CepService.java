@@ -20,7 +20,7 @@ public class CepService {
 	}
 
 	public CepResponse buscarCep(String cep) {
-		CepResponse cepResponse = cepClient.buscarCep(tratarCaracteresDiferentesNumero(cep));
+		CepResponse cepResponse = cepClient.buscarCep(cep);
 		salvarLog(cepResponse);
 		return cepResponse;
 	}
@@ -40,7 +40,4 @@ public class CepService {
 
 	}
 
-	private String tratarCaracteresDiferentesNumero(String cep) {
-		return cep.replaceAll("[^\\d]", "");
-	}
 }

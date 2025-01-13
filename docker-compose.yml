@@ -1,22 +1,47 @@
 services:
-  mockoon:
-    build:
-      context: .
-      dockerfile: Dockerfile # Dockerfile do Mockoon
-    ports:
-      - "3000:3000" # Porta exposta para o Mockoon
-
-  db:
-    image: postgres:15
+  database:
+    image: postgres:15.3-alpine
+    container_name: desafio_db
     restart: always
     environment:
-      POSTGRES_DB: desafio_db
-      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: desafiosantander
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
     ports:
       - "5432:5432"
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - ./data/postgres:/var/lib/postgresql/data
+    networks:
+      - local-network
 
-volumes:
-  db-data:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: desafio-api-cep
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+      - mockoon
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: desafiosantander
+    networks:
+      - local-network
+
+  mockoon:
+    image: mockoon/cli:latest
+    container_name: mockoon-service
+    volumes:
+      - ./mockoon/mockoon-environment.json:/data/mockoon-environment.json
+    command: -d /data/mockoon-environment.json --port 3001 --hostname 0.0.0.0
+    ports:
+      - "3001:3001"
+    networks:
+      - local-network
+
+networks:
+  local-network:
+    driver: bridge

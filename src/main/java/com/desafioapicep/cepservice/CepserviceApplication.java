@@ -11,5 +11,4 @@ public class CepserviceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CepserviceApplication.class, args);
 	}
-
 }

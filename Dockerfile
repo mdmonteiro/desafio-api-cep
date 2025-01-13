@@ -1,10 +1,27 @@
-FROM mockoon/cli:9.1.0
+# Etapa 1: Construir a aplicação
+FROM maven:3.8.3-openjdk-17 AS builder
 
-# Copie o arquivo de configuração para dentro do container
-COPY mockoon-environment.json /mockoon-environment.json
+# Define o diretório de trabalho dentro do container
+WORKDIR /app
 
-# Exponha a porta configurada no Mockoon
-EXPOSE 3000
+# Copia o arquivo pom.xml e as dependências para o cache
+COPY pom.xml .
+COPY src ./src
 
-# Comando para iniciar o mock no container
-CMD ["-d", "/mockoon-environment.json"]
+# Instala as dependências e compila a aplicação
+RUN mvn clean package -DskipTests
+
+# Etapa 2: Executar a aplicação
+FROM openjdk:17-jdk-slim
+
+# Define o diretório de trabalho para o runtime
+WORKDIR /app
+
+# Copia o arquivo JAR gerado na etapa de build
+COPY --from=builder /app/target/*.jar app.jar
+
+# Expõe a porta 8080 (porta padrão do Spring Boot)
+EXPOSE 8080
+
+# Comando para rodar a aplicação
+ENTRYPOINT ["java", "-jar", "app.jar"]
