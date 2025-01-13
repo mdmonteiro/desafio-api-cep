@@ -18,8 +18,7 @@ Para executar este projeto, certifique-se de ter os seguintes itens instalados:
 1. Clone este repositório:
 
    ```bash
-   git clone <URL_DO_REPOSITORIO>
-   cd <NOME_DO_DIRETORIO>
+   git clone git@github.com:mdmonteiro/desafio-api-cep.git   
    ```
 
 2. Certifique-se de que as configurações no `application.properties` estão corretas. O arquivo deve conter as configurações necessárias para conexão com o banco de dados e outros recursos.
@@ -63,13 +62,6 @@ Para executar este projeto, certifique-se de ter os seguintes itens instalados:
 
    Substitua `<PORTA>` pela porta configurada no `application.properties` ou no `docker-compose.yml`.
 
-4. **Verifique os logs** (opcional):
-
-   Para monitorar os logs da aplicação, execute:
-
-   ```bash
-   docker logs -f <NOME_DO_CONTAINER>
-   ```
 
 ## Comandos Adicionais
 
@@ -90,29 +82,3 @@ Para executar este projeto, certifique-se de ter os seguintes itens instalados:
 - Certifique-se de que as portas definidas no `docker-compose.yml` estão disponíveis no host.
 - Altere as variáveis de ambiente e credenciais do banco de dados conforme necessário.
 - Consulte a documentação do SpringBoot para ajustes específicos no projeto.
-
-## Contribuição
-
-Contribuições são bem-vindas! Siga os passos abaixo:
-
-1. Crie um fork do repositório.
-
-2. Crie um branch para sua feature ou correção:
-
-   ```bash
-   git checkout -b minha-feature
-   ```
-
-3. Envie suas alterações:
-
-   ```bash
-   git commit -m "Descrição das alterações"
-   git push origin minha-feature
-   ```
-
-4. Abra um Pull Request.
-
-## Licença
-
-Este projeto está licenciado sob a [Licença MIT](LICENSE).
-
