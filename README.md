@@ -57,7 +57,7 @@ Para executar este projeto, certifique-se de ter os seguintes itens instalados:
    A aplicação estará disponível em:
 
    "
-   http://localhost:8080/cep/{cep}
+   http://localhost:8080/api/v1/cep/{cep}
    "
 4. **Massa de Teste**:
 
